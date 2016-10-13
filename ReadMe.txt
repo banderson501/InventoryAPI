@@ -25,8 +25,10 @@ Postman-Token: 9602b782-dced-41b0-26c4-b7b5c9c0d7d4
 o	Open the InventoryRepo.cs file
 o	By default the service checks for expired items every minute. The frequency is configurable in the app.config file and for a production system would be determined by business requirements.
 o	Edit the Expiration times in the _inventory table to some different times over the next few minutes.
-o	Start the service.
-•	To run the service which checks for expired items.
+o	You can start this service under Visual Studio (start it as an Administrator so that it can write to its logging file).
+o	A line is written to the c:\ServiceLog.txt file for each inventory item which is expired when the service runs.
+o	You can also start the service from the command line using the steps below but I still don’t have the logging working when the service this way. This is what I would work on next.
+•	To run the service from the command line.
 o	Start a Windows command prompt as Administrator
 o	Cd to the bin directory for the InventoryExpiryService project.
 ?	Something like, C:\Users\Brian\Documents\Visual Studio 2015\Projects\InventoryExpiryService\InventoryExpiryService\bin\Debug>
@@ -34,7 +36,7 @@ o	Install the service with the following command
 ?	InventoryExpiryService.exe –install
 o	You can the Services utility to verify that the InventoryExpiryService is running.
 o	On each interval the service will use the InventoryRepository to enumerate all of the inventory items and check the expiration date of each one. 
-o	If an item has expired a message is written to the ServiceLog.txt file bin\debug directory.
+o	If an item has expired a message is written to the c:\ServiceLog.txt file bin\debug directory. – Don’t have the logging working yet when run this way. See above.
 o	To uninstall the service use this command
 ?	InventoryExpiryService.exe –uninstall
 Notes
